@@ -1,0 +1,28 @@
+---
+import { Icon } from "astro-icon";
+import clsx from "clsx";
+
+const ButtonVariant = {
+    primary: "btn--primary",
+    secondary: "btn--secondary",
+    outline: "btn--outline",
+    black: "btn--black"
+};
+
+const {
+    icon,
+    href = "",
+    type = "link",
+    variant = "primary",
+    class: className = ""
+} = Astro.props;
+
+const Element = type === "button" ? "button" : "a";
+const variantClass = ButtonVariant[variant];
+const buttonClass = clsx("btn", variantClass, className);
+---
+
+<Element href={href} role="button" class={buttonClass}>
+    <slot />
+    {icon?.length && <Icon name={icon} class="w-4" />}
+</Element>

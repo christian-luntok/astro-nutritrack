@@ -1,0 +1,94 @@
+---
+import SectionContainer from "./SectionContainer.astro";
+import ButtonGroup from "./button/ButtonGroup.astro";
+import { Icon } from "astro-icon";
+import { Image } from "@astrojs/image/components";
+
+const { footerNavData } = Astro.props;
+const date = new Date();
+const year = date.getFullYear();
+---
+
+<footer id="footer" class="bg-white">
+    {/* Footer Links */}
+    <SectionContainer class="footer--container wrap wrap-px relative z-10">
+        <div class="footer--content-container py-16">
+            <div
+                class="footer-links mb-12 grid grid-cols-2 gap-8 md:mb-16 md:grid-cols-8 lg:grid-cols-12"
+            >
+                <div class="col-span-6">
+                    <div class="footer--logo grid gap-8">
+                        <a href="/">
+                            <Image
+                                src="/nutritrack.svg"
+                                alt="logo"
+                                class="h-6 w-auto"
+                                height={24}
+                                aspectRatio={7 / 1}
+                                format={"webp"}
+                            />
+                        </a>
+                        {/* Get Template button; remove if not used */}
+                        <ButtonGroup alignment="left">
+                            <a
+                                role="button"
+                                href="https://github.com/christian-luntok/astro-nutritrack"
+                                class="btn btn--secondary"
+                            >
+                                Get Template
+                                <Icon name="mdi:arrow-right" class="w-6" />
+                            </a>
+                        </ButtonGroup>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <div
+                        class="footer-menu grid grid-cols-2 md:grid-cols-8 lg:grid-cols-12"
+                    >
+                        {
+                            footerNavData.map((footerLinks) => (
+                                <div class="footer-menu--container col-span-1 md:col-span-4">
+                                    <h3 class="font-bold text-base mb-2">
+                                        {footerLinks.title}
+                                    </h3>
+                                    <ul class="footer-menu--list">
+                                        {footerLinks.items.map((footerItem) => (
+                                            <li class="footer-menu--list-item gap-2">
+                                                <a
+                                                    class="mb-2 block w-auto font-medium transition-colors duration-300 hover:text-secondary-700"
+                                                    href={footerItem.href}
+                                                    target={footerItem.target}
+                                                >
+                                                    {footerItem.label}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </SectionContainer>
+    {/* Footer Credits */}
+    <SectionContainer class="footer-credits relative z-10">
+        <div class="wrap wrap-px py-6">
+            <p class="my-0">
+                © {year} Nutritrack. All rights reserved{" - "}
+                <span class="font-normal">
+                    A template by{" "}
+                    <a
+                        class="transition-colors duration-300 hover:text-secondary-700"
+                        href="https://chrstnl.com"
+                        target="_blank"
+                    >
+                        chrstnl.
+                    </a>
+                </span>
+            </p>
+        </div>
+    </SectionContainer>
+    <div class="footer--background"></div>
+</footer>

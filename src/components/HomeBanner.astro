@@ -1,0 +1,57 @@
+---
+import BadgeGroup from "./badge/BadgeGroup.astro";
+import BadgeIcon from "./badge/BadgeIcon.astro";
+import BadgeMessage from "./badge/BadgeMessage.astro";
+import Button from "./button/Button.astro";
+import ButtonGroup from "./button/ButtonGroup.astro";
+import Content from "./Content.astro";
+import SectionContainer from "./SectionContainer.astro";
+import PageTitle from "./PageTitle.astro";
+import { Icon } from "astro-icon";
+import { Image } from "@astrojs/image/components";
+import { MotionBTTContainer } from "./motion/MotionBTTContainer.jsx";
+---
+
+<SectionContainer class="page-banner--container py-16">
+    <SectionContainer class="page-banner--inner-container wrap wrap-px z-10">
+        <BadgeGroup alignment="center">
+            <BadgeMessage>Discover NutriTrack!</BadgeMessage>
+            <BadgeIcon icon="mdi:hand-wave" />
+        </BadgeGroup>
+        <PageTitle class="text-center mx-auto" type="heavy">
+            The effortless way to plan your meals with the power of Notion.
+        </PageTitle>
+        <Content class="text-center" alignment="center">
+            <p>
+                Streamline your nutrition journey and achieve your health goals
+                with ease.{" "}
+            </p>
+        </Content>
+        <div class="mt-6 mb-16 text-center">
+            <ButtonGroup alignment="center">
+                <Button href="#features">Features</Button>
+                <a
+                    role="button"
+                    href="https://github.com/chrstnl-gh/astro-nutritrack"
+                    class="btn btn--secondary"
+                    target="_blank"
+                >
+                    Get Template
+                    <Icon name="mdi:arrow-right" class="w-6" />
+                </a>
+            </ButtonGroup>
+        </div>
+        <div class="page-banner--image">
+            <Image
+                src={"/images/nutritrack-hero-banner.png"}
+                width={1024}
+                height={680}
+                alt={"Page Banner"}
+                objectFit={"cover"}
+                aspectRatio={16 / 9}
+                format={"webp"}
+                class="mx-auto"
+            />
+        </div>
+    </SectionContainer>
+</SectionContainer>

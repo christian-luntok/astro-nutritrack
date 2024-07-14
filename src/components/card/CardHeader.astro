@@ -1,0 +1,15 @@
+---
+import clsx from "clsx";
+const { class: className } = Astro.props;
+---
+
+<div class="card--header flex flex-row w-auto items-center justify-between">
+    <h2
+        class={clsx(
+            "font-medium text-primary-900 mb-0 text-3xl leading-9 tracking-tighter",
+            className
+        )}
+    >
+        <slot />
+    </h2>
+</div>

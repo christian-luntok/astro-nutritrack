@@ -1,0 +1,44 @@
+---
+import SectionContainer from "./SectionContainer.astro";
+import Nav from "./Nav.astro";
+import ButtonGroup from "./button/ButtonGroup.astro";
+import { Icon } from "astro-icon";
+import { Image } from "@astrojs/image/components";
+import navData from "@/data/navData.json";
+---
+
+<header
+    id="header"
+    class="header fixed left-0 w-full z-30 top-0 bg-white backdrop-filter backdrop-blur-md bg-opacity-50"
+>
+    <SectionContainer class="header--container wrap wrap-px">
+        <div class="header-logo--container">
+            <h1 class="logo mb-0">
+                <a href="/">
+                    <Image
+                        src="/nutritrack.svg"
+                        alt="logo"
+                        class="h-6 w-auto"
+                        height={24}
+                        aspectRatio={7 / 1}
+                        format={"webp"}
+                    />
+                </a>
+            </h1>
+        </div>
+        <SectionContainer class="flex items-center ml-auto">
+            <Nav navItems={navData} />
+            <ButtonGroup class="hidden md:block">
+                <a
+                    role="button"
+                    href="https://github.com/chrstnl-gh/astro-nutritrack"
+                    class="btn btn--secondary ml-4"
+                    target="_blank"
+                >
+                    Get Template
+                    <Icon name="mdi:arrow-right" class="w-6" />
+                </a>
+            </ButtonGroup>
+        </SectionContainer>
+    </SectionContainer>
+</header>

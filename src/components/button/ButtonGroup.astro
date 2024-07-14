@@ -1,0 +1,17 @@
+---
+import { getTextAlign } from "@/utils/helper";
+import SectionContainer from "../SectionContainer.astro";
+
+const { class: className = "", alignment } = Astro.props;
+const alignClass = getTextAlign(alignment);
+---
+
+<SectionContainer className="btn-group">
+    <div
+        class={`btn-group--container ${className && className} ${
+            alignClass && alignClass
+        }`}
+    >
+        <slot />
+    </div>
+</SectionContainer>

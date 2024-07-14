@@ -1,0 +1,92 @@
+---
+import SectionContainer from "@/components/SectionContainer.astro";
+import { Icon } from "astro-icon";
+import clsx from "clsx";
+
+const accordionItemType = {
+    top: "rounded-t-lg",
+    default: "border rounded-none border-t-0",
+    bottom: "border border-t-0 rounded-b-lg"
+};
+
+const { accordionData } = Astro.props;
+---
+
+<SectionContainer
+    class="accordion--container my-16 drop-shadow-xl max-w-3xl w-full mx-auto offset-y-0 offset-x-8"
+>
+    {
+        accordionData.map((accordionItem, index) => (
+            <div
+                id={accordionItem.id}
+                class={clsx(
+                    "accordion-item--container border border-neutral-200 bg-white overflow-hidden",
+                    {
+                        [accordionItemType.top]: index === 0,
+                        [accordionItemType.default]:
+                            index > 0 && index < accordionData.length - 1,
+                        [accordionItemType.bottom]:
+                            index === accordionData.length - 1
+                    }
+                )}
+            >
+                <h2 class="accordion-item--heading mb-0">
+                    <button
+                        class="group relative flex w-full font-semibold items-center rounded-t-lg border-0 bg-white py-4 px-5 text-left text-base text-neutral-800 transition"
+                        type="button"
+                        aria-expanded={accordionItem.isOpen}
+                    >
+                        {accordionItem.title}
+                        <Icon
+                            name="mdi:chevron-up"
+                            class="ml-auto h-8 w-8 shrink-0 rotate-[-180deg] transition-transform duration-200 ease-in-out motion-reduce:transition-none"
+                        />
+                    </button>
+                </h2>
+                <div class="accordion-item--content py-4 px-5 text-base hidden">
+                    <p>{accordionItem.content}</p>
+                </div>
+            </div>
+        ))
+    }
+</SectionContainer>
+
+<script>
+    let activeAccordion = null;
+
+    const accordionClickHandle = (id) => {
+        activeAccordion = id === activeAccordion ? null : id;
+        updateAccordionVisibility();
+    };
+
+    const updateAccordionVisibility = () => {
+        const accordionItems = document.getElementsByClassName(
+            "accordion-item--content"
+        );
+
+        for (let i = 0; i < accordionItems.length; i++) {
+            const accordionItem = accordionItems[i];
+            const accordionId = accordionItem.parentElement?.id;
+
+            if (accordionId === activeAccordion) {
+                accordionItem.classList.remove("hidden");
+                accordionItem.classList.add("!visibility", "block");
+            } else {
+                accordionItem.classList.remove("!visibility", "block");
+                accordionItem.classList.add("hidden");
+            }
+        }
+    };
+
+    // Add click event listeners to accordion buttons
+    const accordionButtons = document.querySelectorAll(
+        ".accordion-item--heading button"
+    );
+
+    accordionButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const accordionId = button.parentElement?.parentElement?.id;
+            accordionClickHandle(accordionId);
+        });
+    });
+</script>

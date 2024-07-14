@@ -1,0 +1,9 @@
+---
+import { Icon } from "astro-icon";
+
+const { icon = "" } = Astro.props;
+---
+
+<div class="badge-group--icon">
+    <Icon name={icon} class="w-4" />
+</div>

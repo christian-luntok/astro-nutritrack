@@ -1,0 +1,93 @@
+---
+import { Icon } from "astro-icon";
+
+const { navItems } = Astro.props;
+---
+
+<nav class="header-nav">
+    <div class="header-nav--container">
+        <button
+            type="button"
+            class="mobile-menu"
+            aria-controls="navbar-dropdown"
+            aria-expanded="false"
+        >
+            <span class="sr-only">Open main menu</span>
+            <Icon name="mdi:menu" class="h-6 w-auto text-black" />
+        </button>
+        <div class="header-nav--menu-container z-20 hide" id="navbar-default">
+            <ul class="header-nav--menu">
+                {
+                    navItems.map((item) => (
+                        <li class="header-nav--menu-item">
+                            <a
+                                href={item.href}
+                                class={`menu-item--link flex items-center ${
+                                    Astro.url.pathname === item.href
+                                        ? "active"
+                                        : ""
+                                }
+                                    `}
+                                target={item.target ? item.target : "_self"}
+                            >
+                                {item.name}
+                                {item.isArrow && (
+                                    <span class="ml-2 inline-block text-sm font-medium text-inherit">
+                                        <Icon
+                                            name="mdi:arrow-top-right"
+                                            className="h-6 w-auto"
+                                        />
+                                    </span>
+                                )}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    let isNavOpen = false;
+    const navButton = document.querySelectorAll(
+        ".header-nav--container button"
+    );
+    const navListItems = document.querySelectorAll(
+        ".header-nav--menu .header-nav--menu-item .menu-item--link"
+    );
+
+    const toggleNav = () => {
+        const navContainer = document.getElementById("navbar-default");
+
+        if (isNavOpen) {
+            navContainer?.classList.remove("show");
+            navContainer?.classList.add("hide");
+        } else {
+            navContainer?.classList.remove("hide");
+            navContainer?.classList.add("show");
+        }
+
+        isNavOpen = !isNavOpen;
+    };
+
+    const closeNav = () => {
+        const navContainer = document.getElementById("navbar-default");
+
+        navContainer?.classList.remove("show");
+        navContainer?.classList.add("hide");
+        isNavOpen = false;
+    };
+
+    navButton.forEach((button) => {
+        button.addEventListener("click", () => {
+            toggleNav();
+        });
+    });
+
+    navListItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            closeNav();
+        });
+    });
+</script>

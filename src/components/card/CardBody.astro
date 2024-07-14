@@ -1,0 +1,7 @@
+---
+const { class: className } = Astro.props;
+---
+
+<div class={`card--body h-100 w-100 ${className && className}`}>
+    <slot />
+</div>

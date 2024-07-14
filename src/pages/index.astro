@@ -1,0 +1,146 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import faqData from "@/data/faqData.json";
+import testimonialData from "@/data/testimonialData.json";
+import featuresData from "@/data/featuresData.json";
+import { Icon } from "astro-icon";
+import Accordion from "@/components/Accordion.astro";
+import HomeBanner from "@/components/HomeBanner.astro";
+import { MotionBTTContainer } from "@/components/motion/MotionBTTContainer";
+import BadgeGroup from "@/components/badge/BadgeGroup.astro";
+import BadgeMessage from "@/components/badge/BadgeMessage.astro";
+import PageTitle from "@/components/PageTitle.astro";
+import Content from "@/components/Content.astro";
+import ContentImage from "@/components/ContentImage.astro";
+import BadgeIcon from "@/components/badge/BadgeIcon.astro";
+import CardGroup from "@/components/card/CardGroup.astro";
+import Card from "@/components/card/Card.astro";
+import CardBody from "@/components/card/CardBody.astro";
+import CardImage from "@/components/card/CardImage.astro";
+import CardHeader from "@/components/card/CardHeader.astro";
+import Column from "@/components/Column.astro";
+---
+
+<Layout
+    title="NutriTrack - A landing page template 🚀"
+    description="Discover NutriTrack, the effortless way to plan your meals with the power of Notion. Streamline your nutrition journey and achieve your health goals with ease."
+>
+    <div class="main-wrapper bg-[#F3F5F8] relative z-10 pb-20 pt-20">
+        <HomeBanner />
+        <!-- Home Banner -->
+        <SectionContainer
+            class="components--container wrap wrap-px grid gap-8 sm:gap-24"
+        >
+            <SectionContainer id="features" class="features">
+                <BadgeGroup alignment="center">
+                    <BadgeMessage>Features</BadgeMessage>
+                    <BadgeIcon icon="mdi:star-circle-outline" />
+                </BadgeGroup>
+                <PageTitle class="text-center mx-auto" type="default">
+                    Simplify Your Nutrition Journey with NutriTrack
+                </PageTitle>
+                <Content class="text-center" alignment="center">
+                    <p>
+                        Hey there! Welcome to NutriTrack, the ultimate nutrition
+                        meal planner powered by Notion. We&apos;ve got some
+                        awesome features lined up to make your nutrition journey
+                        a piece of cake (pun intended). Check them out:
+                    </p>
+                </Content>
+                <ContentImage contentImageData={featuresData} />
+            </SectionContainer>
+            <!-- Features -->
+            <SectionContainer class="feature-tabs">
+                <BadgeGroup alignment="center">
+                    <BadgeMessage>More Features</BadgeMessage>
+                    <BadgeIcon icon="twemoji:waving-hand" />
+                </BadgeGroup>
+                <PageTitle class="text-center mx-auto" type="default">
+                    Master Your Meal Planning and Nutrition Journey
+                </PageTitle>
+                <Content class="text-center" alignment="center">
+                    <p>
+                        Our comprehensive Notion template designed to empower
+                        you on your meal planning and nutrition journey. With
+                        our user-friendly features, customizable layouts, and
+                        seamless recipe integration, taking control of your
+                        meals has never been easier.
+                    </p>
+                </Content>
+                <CardGroup
+                    class="grid scroll-m-24 gap-8 grid-cols-1 max-w-4xl mx-auto mt-24 md:grid-cols-2"
+                >
+                    <Card class="col-span-1 text-primary-900">
+                        <CardBody class="w-full bg-white-600/20 p-12">
+                            <CardImage
+                                src="/images/features4.png"
+                                alt="Customizable Layouts image used."
+                            />
+                            <CardHeader
+                                class="!text-black !text-2xl !font-bold"
+                            >
+                                Customizable Layouts
+                            </CardHeader>
+                            <p>
+                                Personalize your meal planning experience with
+                                our flexible layouts. Tailor your sections,
+                                categories, and tabs to suit your unique style
+                                and organization preferences. Our template
+                                adapts to your needs, providing a seamless and
+                                personalized planning experience.
+                            </p>
+                        </CardBody>
+                    </Card>
+                    <Card class="col-span-1 text-primary-900">
+                        <CardBody class="w-full bg-white-600/20 p-12">
+                            <CardImage
+                                src="/images/features3.png"
+                                alt="Progress Tracking image used."
+                            />
+                            <CardHeader
+                                class="!text-black !text-2xl !font-bold"
+                            >
+                                Progress Tracking
+                            </CardHeader>
+                            <p>
+                                Celebrate your wins and stay motivated on your
+                                nutrition journey. NutriTrack allows you to
+                                monitor your progress with weight, measurements,
+                                and other key metrics. Track your improvements
+                                over time and see the positive impact of your
+                                healthy choices.
+                            </p>
+                        </CardBody>
+                    </Card>
+                </CardGroup>
+            </SectionContainer>
+            <!-- More Features -->
+            <SectionContainer id="testimonials" class="benefits">
+                <BadgeGroup alignment="left">
+                    <BadgeMessage>Testimonials</BadgeMessage>
+                    <BadgeIcon icon="twemoji:waving-hand" />
+                </BadgeGroup>
+                <PageTitle class="" type="default">
+                    This is what our customers have to say about this template
+                </PageTitle>
+                <Column columnData={testimonialData} />
+            </SectionContainer>
+            <!-- Testimonials -->
+            <SectionContainer id="faq" class="faq">
+                <BadgeGroup alignment="center">
+                    <BadgeMessage>FAQ</BadgeMessage>
+                </BadgeGroup>
+                <PageTitle class="text-center mx-auto" type="default">
+                    Got some burning questions about NutriTrack?
+                    <br />
+                    <br />
+                    No worries! We&apos;ve got the answers you need:
+                </PageTitle>
+                <Accordion accordionData={faqData} />
+            </SectionContainer>
+        </SectionContainer>
+    </div>
+    <!-- FAQ -->
+</Layout>
+<!-- Components Container -->

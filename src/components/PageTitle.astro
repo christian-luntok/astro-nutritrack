@@ -1,0 +1,19 @@
+---
+import SectionContainer from "./SectionContainer.astro";
+import clsx from "clsx";
+
+const titleVariant = {
+    heavy: "text-4xl lg:text-6xl",
+    default: "text-3xl lg:text-5xl"
+};
+
+const { class: className = "", type = "" } = Astro.props;
+
+const titleClass = clsx("h2 font-semibold", titleVariant[type], className);
+---
+
+<SectionContainer
+    class={`page-title--content max-w-3xl ${className && className}`}
+>
+    <h1 class={titleClass}><slot /></h1>
+</SectionContainer>

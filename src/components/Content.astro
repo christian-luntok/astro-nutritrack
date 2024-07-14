@@ -1,0 +1,14 @@
+---
+import { getTextAlign } from "@/utils/helper";
+
+const { class: className = "", alignment } = Astro.props;
+const alignClass = getTextAlign(alignment);
+---
+
+<div
+    class={`content text-xl max-w-3xl text-black/60 ${className && className} ${
+        alignClass && alignClass
+    }`}
+>
+    <slot />
+</div>

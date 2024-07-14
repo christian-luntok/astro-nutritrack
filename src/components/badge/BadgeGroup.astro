@@ -1,0 +1,28 @@
+---
+import SectionContainer from "@/components/SectionContainer.astro";
+import { getTextAlign } from "@/utils/helper";
+
+const {
+    link = "",
+    class: className,
+    alignment,
+    target = "",
+    type = "default"
+} = Astro.props;
+
+const Element = link ? "a" : "div";
+const href =
+    typeof link === "string" ? link : link?.href != null ? link.href : "";
+const alignClass = getTextAlign(alignment);
+---
+
+<SectionContainer class="badge-group w-full">
+    <Element
+        href={href}
+        class={`badge-group--container ${link ? "badge-group--link" : ""} ${
+            alignClass ? alignClass : ""
+        } ${className && className}`}
+    >
+        <slot />
+    </Element>
+</SectionContainer>

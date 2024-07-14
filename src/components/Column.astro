@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon";
+import SectionContainer from "./SectionContainer.astro";
+
+const { columnData } = Astro.props;
+---
+
+<SectionContainer
+    class="benefits-lists grid gap-x-8 gap-y-16 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-16"
+>
+    {
+        columnData.map((item) => (
+            <div
+                id={item.id}
+                class="benefits-list--item text-[#737373] text-left"
+            >
+                <Icon name={item.icon} class="mb-4 w-10 h-10 my-2" />
+                <h3 class="text-xl mb-2 font-medium text-black">
+                    {item.title}
+                </h3>
+                <p>{item.content}</p>
+                <o class="flex">
+                    <Icon name="mdi:star" class="h-6 mr-1 text-secondary-500" />
+                    <Icon name="mdi:star" class="h-6 mr-1 text-secondary-500" />
+                    <Icon name="mdi:star" class="h-6 mr-1 text-secondary-500" />
+                    <Icon name="mdi:star" class="h-6 mr-1 text-secondary-500" />
+                    <Icon name="mdi:star" class="h-6 mr-1 text-secondary-500" />
+                </o>
+            </div>
+        ))
+    }
+</SectionContainer>

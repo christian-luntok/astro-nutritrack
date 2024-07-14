@@ -1,0 +1,27 @@
+/**
+
+=========================================================
+** Custom General styling
+=========================================================
+
+**/
+
+html {
+}
+
+body {
+    font-family: $body-font;
+    letter-spacing: rem(-0.5);
+}
+
+.main {
+    // @apply grid gap-8 sm:gap-16;
+}
+
+.content {
+    &.text-xl {
+        p {
+            @apply leading-7;
+        }
+    }
+}

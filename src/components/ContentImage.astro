@@ -1,0 +1,60 @@
+---
+import SectionContainer from "./SectionContainer.astro";
+import { Icon } from "astro-icon";
+import { Image } from "@astrojs/image/components";
+
+const { contentImageData } = Astro.props;
+---
+
+<SectionContainer class="process-items mt-16 space-y-16">
+    {
+        contentImageData.map((item) => (
+            <div
+                id={item.id}
+                class="process-item--container grid md:grid-cols-2 gap-y-8"
+            >
+                <div
+                    class={`process-item--image rounded-3xl ${
+                        item.align === "left" ? "md:order-1" : ""
+                    }`}
+                >
+                    <Image
+                        src={item.image}
+                        width={550}
+                        height={380}
+                        aspectRatio={1 / 1}
+                        alt="Process Banner 1"
+                        class="drop-shadow-xl w-full offset-y-0 offset-x-8 blur-16 object-cover"
+                    />
+                </div>
+                <div
+                    class={`process-item--content ${
+                        item.align === "left"
+                            ? "md:pr-16 lg:pr-24 xl:pr-32 ml-auto"
+                            : "md:pl-16 lg:pl-24 xl:pl-32  mr-auto"
+                    } my-auto content text-black/60`}
+                >
+                    <h3 class="mb-6 h4 md:h3 font-semibold text-black">
+                        {item.title}
+                    </h3>
+                    <p>{item.content}</p>
+                    <ul class="process-item--list space-y-3">
+                        {item.listItems?.length &&
+                            item.listItems.map((listItem) => (
+                                <li
+                                    id={listItem.id}
+                                    class="inline-grid grid-flow-col-dense"
+                                >
+                                    <Icon
+                                        name="ph:seal-check-bold"
+                                        class="w-6 h-6 text-secondary-500 mr-2"
+                                    />
+                                    {listItem.content}
+                                </li>
+                            ))}
+                    </ul>
+                </div>
+            </div>
+        ))
+    }
+</SectionContainer>
